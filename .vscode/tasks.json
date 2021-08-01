@@ -1,0 +1,36 @@
+{
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "build",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-Iinclude",
+        "src/*.cc",
+        "-o",
+        "bin/main.exe",
+        "-Llib",
+        "-lmingw32",
+				"-lSDL2main",
+				"-lSDL2",
+        "-lSDL2_image",
+        "-lSDL2_ttf",
+        "-lSDL2_mixer",
+				"-mwindows"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Tarea generada por el depurador."
+    }
+  ],
+  "version": "2.0.0"
+}
