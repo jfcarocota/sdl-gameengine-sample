@@ -1,6 +1,7 @@
 #pragma once
 #include "EntityManager.hh"
 #include "Component.hh"
+#include "EntityManager.hh"
 #include <vector>
 #include<string>
 
