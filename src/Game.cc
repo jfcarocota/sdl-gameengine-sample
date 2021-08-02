@@ -1,4 +1,5 @@
 #include "Game.hh"
+#include "TransformComponent.hh"
 
 SDL_Renderer* Game::renderer;
 EntityManager manager;
@@ -85,7 +86,8 @@ void Game::Render()
   
   SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
   SDL_RenderClear(renderer);
-  
+  if(manager.HasNoEntities()) return;
+  manager.Render();
   SDL_RenderPresent(renderer);
 }
 
@@ -98,5 +100,6 @@ void Game::Destroy()
 
 void Game::LoadLevel(int level)
 {
-
+  Entity& newEntity(manager.AddEntity("projectile"));
+  newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 32, 32, 1);
 }

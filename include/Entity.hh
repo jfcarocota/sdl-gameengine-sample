@@ -28,9 +28,9 @@ public:
   T& AddComponent(TArgs&&... args)
   {
     T* newComponent{new T(std::forward<TArgs>(args)...)};
-    newComponent->woner = this;
+    newComponent->owner = this;
     components.emplace_back(newComponent);
-    newComponent.Initialize();
+    newComponent->Initialize();
     return *newComponent;
   }
 };
