@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include "Constants.hh"
+#include "EntityManager.hh"
 #include "glm/glm.hpp"
 
 class Game

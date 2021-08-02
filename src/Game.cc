@@ -1,6 +1,7 @@
 #include "Game.hh"
 
 SDL_Renderer* Game::renderer;
+EntityManager manager;
 
 glm::vec2 projectilePos{glm::vec2(0.f, 0.f)};
 glm::vec2 projectileVel{glm::vec2(20.f, 20.f)};
@@ -107,5 +108,5 @@ void Game::Destroy()
 
 void Game::LoadLevel(int level)
 {
-  
+
 }
