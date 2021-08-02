@@ -3,11 +3,6 @@
 SDL_Renderer* Game::renderer;
 EntityManager manager;
 
-glm::vec2 projectilePos{glm::vec2(0.f, 0.f)};
-glm::vec2 projectileVel{glm::vec2(20.f, 20.f)};
-
-
-
 Game::Game()
 {
 
@@ -80,22 +75,14 @@ void Game::Update()
   float deltaTime{(SDL_GetTicks() - ticksLastFrame) / 1000.f};
   deltaTime = deltaTime > 0.05f ? 0.05f : deltaTime;
   ticksLastFrame = SDL_GetTicks();
-  projectilePos = glm::vec2(projectilePos.x + projectileVel.x * deltaTime, projectilePos.y + projectileVel.y * deltaTime);
 }
 
 void Game::Render()
 {
-  SDL_Rect projectile
-  {
-    (int) projectilePos.x,
-    (int) projectilePos.y,
-    100,
-    100
-  };
+  
   SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
   SDL_RenderClear(renderer);
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_RenderFillRect(renderer, &projectile);
+  
   SDL_RenderPresent(renderer);
 }
 
