@@ -37,7 +37,9 @@ void Game::Initialize(unsigned int windowWidth, unsigned int windowHeight)
     return;
   }
 
+  LoadLevel(0);
   isRunning = true;
+  return;
 }
 
 bool Game::IsRunning() const
@@ -75,6 +77,7 @@ void Game::Update()
   float deltaTime{(SDL_GetTicks() - ticksLastFrame) / 1000.f};
   deltaTime = deltaTime > 0.05f ? 0.05f : deltaTime;
   ticksLastFrame = SDL_GetTicks();
+  manager.Update(deltaTime);
 }
 
 void Game::Render()
