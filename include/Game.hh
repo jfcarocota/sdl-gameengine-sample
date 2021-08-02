@@ -12,9 +12,9 @@ class Game
   private:
     bool isRunning{false};
     SDL_Window* window{};
-    SDL_Renderer* renderer{};
     int ticksLastFrame{};
   public:
+    static SDL_Renderer* renderer;
     Game();
     ~Game();
     void Initialize(unsigned int windowWidth, unsigned int windowHeight);
