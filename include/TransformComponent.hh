@@ -7,11 +7,11 @@
 
 class TransformComponent : public Component
 {
-private:
+public:
   glm::vec2 position;
   glm::vec2 velocity;
   float width, height, scale;
-public:
+
   TransformComponent(int posX, int posY, int velX, int velY, int w, int h, int s)
   {
     position = glm::vec2(posX, posY);
@@ -20,7 +20,7 @@ public:
     height = h;
     scale = s;
   }
-  
+
   void Initialize() override
   {
 

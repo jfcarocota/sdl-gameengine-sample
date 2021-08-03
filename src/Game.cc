@@ -1,8 +1,10 @@
 #include "Game.hh"
 #include "TransformComponent.hh"
 
-SDL_Renderer* Game::renderer;
 EntityManager manager;
+AssetManager* assetManager{new AssetManager(&manager)};
+SDL_Renderer* Game::renderer;
+
 
 Game::Game()
 {

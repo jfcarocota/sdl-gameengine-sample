@@ -6,7 +6,10 @@
 #include <iostream>
 #include "Constants.hh"
 #include "EntityManager.hh"
-#include "glm/glm.hpp"
+#include "AssetManager.hh"
+#include<glm/glm.hpp>
+
+class AssetManager;
 
 class Game
 {
@@ -16,6 +19,7 @@ class Game
     int ticksLastFrame{};
   public:
     static SDL_Renderer* renderer;
+    static AssetManager* assetManager;
     Game();
     ~Game();
     void Initialize(unsigned int windowWidth, unsigned int windowHeight);
