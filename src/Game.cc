@@ -1,8 +1,9 @@
 #include "Game.hh"
 #include "TransformComponent.hh"
+#include "SpriteComponent.hh"
 
 EntityManager manager;
-AssetManager* assetManager{new AssetManager(&manager)};
+AssetManager* Game::assetManager{new AssetManager(&manager)};
 SDL_Renderer* Game::renderer;
 
 
@@ -102,6 +103,12 @@ void Game::Destroy()
 
 void Game::LoadLevel(int level)
 {
-  Entity& newEntity(manager.AddEntity("projectile"));
-  newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 32, 32, 1);
+  /*Load assets*/
+  std::string filePath = "./assets/images/red.png";
+  assetManager->AddTexture("red-image", filePath.c_str());
+
+  /*creating antities*/
+  Entity& newEntity(manager.AddEntity("red"));
+  newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 313, 685, 1);
+  newEntity.AddComponent<SpriteComponent>("red-image");
 }
