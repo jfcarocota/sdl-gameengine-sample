@@ -14,5 +14,5 @@ class AssetManager
     ~AssetManager();
     void ClearData();
     void AddTexture(std::string textureId, const char* filePath);
-    
+    SDL_Texture* GetTexture(std::string textureId);
 };
