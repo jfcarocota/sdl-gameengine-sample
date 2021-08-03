@@ -2,7 +2,8 @@
 #include "EntityManager.hh"
 #include "Component.hh"
 #include "EntityManager.hh"
-#include <vector>
+#include<vector>
+#include<map>
 #include<string>
 
 class Component;
@@ -14,6 +15,7 @@ private:
   EntityManager& entityManager;
   bool isActive;
   std::vector<Component*> components{};
+  std::map<const std::type_info*, Component*> componentTypeMap;
 public:
   std::string name;
 
@@ -30,6 +32,7 @@ public:
     T* newComponent{new T(std::forward<TArgs>(args)...)};
     newComponent->owner = this;
     components.emplace_back(newComponent);
+    componentTypeMap[&typeid(*newComponent)] = newComponent;
     newComponent->Initialize();
     return *newComponent;
   }
