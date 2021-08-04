@@ -104,11 +104,15 @@ void Game::Destroy()
 void Game::LoadLevel(int level)
 {
   /*Load assets*/
-  std::string filePath = "./assets/images/red.png";
-  assetManager->AddTexture("red-image", filePath.c_str());
+  assetManager->AddTexture("red-image", std::string("./assets/images/red.png").c_str());
+  assetManager->AddTexture("oldguy-image", std::string("./assets/images/oldguy.png").c_str());
 
   /*creating antities*/
-  Entity& newEntity(manager.AddEntity("red"));
-  newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 313, 685, 1);
-  newEntity.AddComponent<SpriteComponent>("red-image");
+  /*Entity& redEntity(manager.AddEntity("red"));
+  redEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 313, 685, 1);
+  redEntity.AddComponent<SpriteComponent>("red-image");*/
+
+  Entity& oldguyEntity(manager.AddEntity("oldguy"));
+  oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 5);
+  oldguyEntity.AddComponent<SpriteComponent>("oldguy-image");
 }

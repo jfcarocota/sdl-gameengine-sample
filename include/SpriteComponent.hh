@@ -1,10 +1,13 @@
 #pragma once
 #include<SDL2/SDL.h>
 #include<string>
+#include<map>
 #include "TextureManager.hh"
 #include "AssetManager.hh"
 #include "TransformComponent.hh"
 #include "Game.hh"
+#include "Animation.hh"
+#include "Component.hh"
 
 class SpriteComponent : public Component
 {
@@ -13,13 +16,52 @@ private:
   SDL_Texture* texture;
   SDL_Rect sourceRectangle;
   SDL_Rect destinationRectangle;
+  int numFrames;
+  bool isAnimated;
+  float animationSpeed;
+  bool isFixed;
+  std::map<std::string, Animation> animations;
+  std::string currentAnimationName{};
+  unsigned int animationIndex{};
 public:
   SDL_RendererFlip spriteFlip{SDL_FLIP_NONE};
 
-
   SpriteComponent(const char* filePath)
   {
+    isAnimated = false;
+    isFixed = false;
     SetTexture(filePath);
+  }
+
+  SpriteComponent(std::string id, int numFrames, int animationSpeed, bool hasDirections, bool isFixed)
+  {
+    isAnimated = true;
+    this->numFrames = numFrames;
+    this->animationSpeed = animationSpeed;
+    this->isFixed = isFixed;
+
+    if(hasDirections)
+    {
+      
+    }
+    else
+    {
+      Animation singleAnimation = Animation(0, numFrames, animationSpeed);
+      animations.emplace("SingleAnimation", singleAnimation);
+      animationIndex = 0;
+      currentAnimationName = "SingleAnimation";
+    }
+
+    Play(currentAnimationName);
+    SetTexture(id);
+  }
+
+  void Play(std::string animationName)
+  {
+    numFrames = animations[animationName].numFrames;
+    animationIndex = animations[animationName].index;
+    animationSpeed = animations[animationName].animationSpeed;
+    currentAnimationName = animationName;
   }
 
   void SetTexture(std::string assetTextureId)
@@ -38,8 +80,12 @@ public:
 
   void Update(float deltaTime) override
   {
-    destinationRectangle.x = (int) transform->position.x;
-    destinationRectangle.y = (int) transform->position.y;
+    if(isAnimated)
+    {
+
+    }
+    destinationRectangle.x = static_cast<int>(transform->position.x);
+    destinationRectangle.y = static_cast<int>(transform->position.y);
     destinationRectangle.w = transform->width * transform->scale;
     destinationRectangle.h = transform->height * transform->scale;
   }
