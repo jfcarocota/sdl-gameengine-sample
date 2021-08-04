@@ -18,7 +18,7 @@ private:
   SDL_Rect destinationRectangle;
   int numFrames;
   bool isAnimated;
-  float animationSpeed;
+  int animationSpeed;
   bool isFixed;
   std::map<std::string, Animation> animations;
   std::string currentAnimationName{};
@@ -82,8 +82,9 @@ public:
   {
     if(isAnimated)
     {
-
+      sourceRectangle.x = sourceRectangle.w * static_cast<int>((SDL_GetTicks() / animationSpeed) % numFrames);
     }
+    sourceRectangle.y = animationIndex * transform->height;
     destinationRectangle.x = static_cast<int>(transform->position.x);
     destinationRectangle.y = static_cast<int>(transform->position.y);
     destinationRectangle.w = transform->width * transform->scale;
