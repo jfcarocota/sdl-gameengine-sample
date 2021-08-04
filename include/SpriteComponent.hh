@@ -42,7 +42,13 @@ public:
 
     if(hasDirections)
     {
-      
+      Animation idleAnimation{Animation(0, numFrames, animationSpeed)};
+      Animation walkAnimation{Animation(1, numFrames, animationSpeed)};
+
+      animations.emplace("IdleAnimation", idleAnimation);
+      animations.emplace("WalkAnimation", walkAnimation);
+      animationIndex = 0;
+      currentAnimationName = "IdleAnimation";
     }
     else
     {

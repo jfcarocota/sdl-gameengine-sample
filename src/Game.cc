@@ -113,6 +113,6 @@ void Game::LoadLevel(int level)
   redEntity.AddComponent<SpriteComponent>("red-image");*/
 
   Entity& oldguyEntity(manager.AddEntity("oldguy"));
-  oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 5);
-  oldguyEntity.AddComponent<SpriteComponent>("oldguy-image");
+  oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 4);
+  oldguyEntity.AddComponent<SpriteComponent>("oldguy-image", 6, 60, true, false);
 }
