@@ -1,6 +1,7 @@
 #include "Game.hh"
 #include "TransformComponent.hh"
 #include "SpriteComponent.hh"
+#include "InputSystem.hh"
 
 EntityManager manager;
 AssetManager* Game::assetManager{new AssetManager(&manager)};
@@ -55,6 +56,7 @@ bool Game::IsRunning() const
 void Game::ProcessInput()
 {
   SDL_PollEvent(&event);
+  std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
   switch (event.type)
   {
     case SDL_QUIT:
