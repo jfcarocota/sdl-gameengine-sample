@@ -1,7 +1,7 @@
 #include "Game.hh"
 #include "TransformComponent.hh"
 #include "SpriteComponent.hh"
-#include "InputSystem.hh"
+#include "KeyboardControlComponent.hh"
 
 EntityManager manager;
 AssetManager* Game::assetManager{new AssetManager(&manager)};
@@ -56,7 +56,6 @@ bool Game::IsRunning() const
 void Game::ProcessInput()
 {
   SDL_PollEvent(&event);
-  //std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
   switch (event.type)
   {
     case SDL_QUIT:
@@ -117,4 +116,5 @@ void Game::LoadLevel(int level)
   Entity& oldguyEntity(manager.AddEntity("oldguy"));
   oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 4);
   oldguyEntity.AddComponent<SpriteComponent>("oldguy-image", 6, 60, true, false);
+  oldguyEntity.AddComponent<KeyboardControlComponent>();
 }
