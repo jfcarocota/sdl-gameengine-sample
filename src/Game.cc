@@ -5,6 +5,7 @@
 EntityManager manager;
 AssetManager* Game::assetManager{new AssetManager(&manager)};
 SDL_Renderer* Game::renderer;
+SDL_Event Game::event;
 
 
 Game::Game()
@@ -53,7 +54,6 @@ bool Game::IsRunning() const
 
 void Game::ProcessInput()
 {
-  SDL_Event event;
   SDL_PollEvent(&event);
   switch (event.type)
   {
