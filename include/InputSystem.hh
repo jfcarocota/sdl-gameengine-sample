@@ -26,24 +26,49 @@ glm::vec2 InputSystem::axis;
 
 glm::vec2 InputSystem::GetAxis()
 {
-  switch (Game::event.key.keysym.sym)
+  if(Game::event.type == SDL_KEYUP)
   {
-    case SDLK_UP:
-      axis.y = 1;
-      break;
-    case SDLK_DOWN:
-      axis.y = -1;
-      break;
-    case SDLK_RIGHT:
-      axis.x = 1;
-      break;
-    case SDLK_LEFT:
-      axis.x = -1;
-      break;
-    default:
-      axis.x = 0;
-      axis.y = 0;
-      break;
+    switch (Game::event.key.keysym.sym)
+    {
+      case SDLK_UP:
+        axis.y = 0;
+        break;
+      case SDLK_DOWN:
+        axis.y = 0;
+        break;
+      case SDLK_RIGHT:
+        axis.x = 0;
+        break;
+      case SDLK_LEFT:
+        axis.x = 0;
+        break;
+      default:
+        axis.x = 0;
+        axis.y = 0;
+        break;
+    }
+  }
+  else
+  {
+    switch (Game::event.key.keysym.sym)
+    {
+      case SDLK_UP:
+        axis.y = 1;
+        break;
+      case SDLK_DOWN:
+        axis.y = -1;
+        break;
+      case SDLK_RIGHT:
+        axis.x = 1;
+        break;
+      case SDLK_LEFT:
+        axis.x = -1;
+        break;
+      default:
+        axis.x = 0;
+        axis.y = 0;
+        break;
+    }
   }
   return axis;
 }

@@ -56,7 +56,7 @@ bool Game::IsRunning() const
 void Game::ProcessInput()
 {
   SDL_PollEvent(&event);
-  std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
+  //std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
   switch (event.type)
   {
     case SDL_QUIT:
