@@ -11,15 +11,11 @@
 class KeyboardControlComponent : public Component
 {
 public:
-  std::string upKey;
-  std::string downKey;
-  std::string leftKey;
-  std::string rightKey;
-  std::string shootKey;
+  float moveSpeed;
   TransformComponent* transform;
   SpriteComponent* sprite;
 
-  KeyboardControlComponent();
+  KeyboardControlComponent(float moveSpeed);
   ~KeyboardControlComponent();
   void Initialize() override
   {
@@ -30,8 +26,9 @@ public:
   void Update(float deltaTime) override
   {
     std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
-    transform->velocity.x = InputSystem::GetAxis().x * 100;
-    transform->velocity.y = InputSystem::GetAxis().y * 100;
+    transform->velocity.x = InputSystem::GetAxis().x * moveSpeed;
+    transform->velocity.y = InputSystem::GetAxis().y * moveSpeed;
+    sprite->spriteFlip = InputSystem::GetAxis().x < 0.f ? SDL_FLIP_HORIZONTAL : InputSystem::GetAxis().x > 0.f ? SDL_FLIP_NONE : sprite->spriteFlip;
     if(InputSystem::GetAxis() != glm::vec2(0, 0))
     {
       sprite->Play("WalkAnimation");

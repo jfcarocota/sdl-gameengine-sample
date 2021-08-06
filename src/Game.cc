@@ -116,5 +116,5 @@ void Game::LoadLevel(int level)
   Entity& oldguyEntity(manager.AddEntity("oldguy"));
   oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 4);
   oldguyEntity.AddComponent<SpriteComponent>("oldguy-image", 6, 60, true, false);
-  oldguyEntity.AddComponent<KeyboardControlComponent>();
+  oldguyEntity.AddComponent<KeyboardControlComponent>(200.f);
 }
