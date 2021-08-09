@@ -2,6 +2,7 @@
 #include "TransformComponent.hh"
 #include "SpriteComponent.hh"
 #include "KeyboardControlComponent.hh"
+#include "AudioListenerComponent.hh"
 
 EntityManager manager;
 AssetManager* Game::assetManager{new AssetManager(&manager)};
@@ -41,6 +42,13 @@ void Game::Initialize(unsigned int windowWidth, unsigned int windowHeight)
   {
     std::cerr << "[Error]: Error creating SDL Renderer" << std::endl;
     return;
+  }
+
+  //Initialize SDL_mixer
+  if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+  {
+      printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+      return;
   }
 
   LoadLevel(0);
@@ -117,4 +125,5 @@ void Game::LoadLevel(int level)
   oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 4);
   oldguyEntity.AddComponent<SpriteComponent>("oldguy-image", 6, 60, true, false);
   oldguyEntity.AddComponent<KeyboardControlComponent>(200.f);
+  oldguyEntity.AddComponent<AudioListenerComponent>();
 }
