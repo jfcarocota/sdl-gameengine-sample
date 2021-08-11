@@ -33,7 +33,7 @@ public:
 
   void Update(float deltaTime) override
   {
-    std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
+    //std::cout << InputSystem::GetAxis().x << InputSystem::GetAxis().y << std::endl;
     transform->velocity.x = InputSystem::GetAxis().x * moveSpeed;
     transform->velocity.y = InputSystem::GetAxis().y * moveSpeed;
     sprite->spriteFlip = InputSystem::GetAxis().x < 0.f ? SDL_FLIP_HORIZONTAL : InputSystem::GetAxis().x > 0.f ? SDL_FLIP_NONE : sprite->spriteFlip;

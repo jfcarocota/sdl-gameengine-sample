@@ -3,12 +3,14 @@
 #include "SpriteComponent.hh"
 #include "KeyboardControlComponent.hh"
 #include "AudioListenerComponent.hh"
+#include "Map.hh"
+#include<string>
 
 EntityManager manager;
 AssetManager* Game::assetManager{new AssetManager(&manager)};
 SDL_Renderer* Game::renderer;
 SDL_Event Game::event;
-
+Map* map;
 
 Game::Game()
 {
@@ -95,7 +97,6 @@ void Game::Update()
 
 void Game::Render()
 {
-  
   SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
   SDL_RenderClear(renderer);
   if(manager.HasNoEntities()) return;
@@ -113,13 +114,22 @@ void Game::Destroy()
 void Game::LoadLevel(int level)
 {
   /*Load assets*/
-  assetManager->AddTexture("red-image", std::string("./assets/images/red.png").c_str());
-  assetManager->AddTexture("oldguy-image", std::string("./assets/images/oldguy.png").c_str());
+  std::string jungleMapPath = "assets/tilemaps/jungle.png";
 
+  assetManager->AddTexture("red-image", std::string("assets/images/red.png").c_str());
+  assetManager->AddTexture("oldguy-image", std::string("assets/images/oldguy.png").c_str());
+  assetManager->AddTexture("jungle-tiletexture", jungleMapPath.c_str());
+
+  map = new Map("jungle-tiletexture", 1, 32);
+  map->LoadMap("assets/tilemaps/jungle.map", 25, 20);
   /*creating antities*/
   /*Entity& redEntity(manager.AddEntity("red"));
-  redEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 313, 685, 1);
-  redEntity.AddComponent<SpriteComponent>("red-image");*/
+  redEntity.AddComponent<TransformComponent>(0, 0, 0, 0, 313, 685, 0.5);
+  redEntity.AddComponent<SpriteComponent>("red-image");
+
+  Entity& mapEntity(manager.AddEntity("maptile"));
+  mapEntity.AddComponent<TransformComponent>(0, 0, 0, 0, 320, 96, 2);
+  mapEntity.AddComponent<SpriteComponent>("jungle-tiletexture");*/
 
   Entity& oldguyEntity(manager.AddEntity("oldguy"));
   oldguyEntity.AddComponent<TransformComponent>(240, 106, 0, 0, 13.5, 13.5, 4);

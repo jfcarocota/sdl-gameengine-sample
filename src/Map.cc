@@ -3,6 +3,7 @@
 #include "EntityManager.hh"
 #include "TileComponent.hh"
 #include<fstream>
+#include<iostream>
 
 extern EntityManager manager;
 
@@ -17,19 +18,19 @@ Map::~Map()
 {
 }
 
-void Map::Addtile(int sourcex, int sourceY, int x, int y)
+void Map::Addtile(int sourceRectX, int sourceRectY, int x, int y)
 {
-  Entity& entity{manager.AddEntity("tile")};
-  entity.AddComponent<TileComponent>(sourcex, sourceY, x, y, tileSize, scale, textueId);
+  Entity& newTile{manager.AddEntity("Tile")};
+  newTile.AddComponent<TileComponent>(sourceRectX, sourceRectY, x, y, tileSize, scale, textueId);
 }
 
 void Map::LoadMap(std::string filePath, int mapSizeX, int mapSizeY)
 {
   std::fstream mapFile;
   mapFile.open(filePath);
-  for(int y{}; y < mapSizeY; y++)
+  for(int y = 0; y < mapSizeY; y++)
   {
-    for(int x; x < mapSizeX; x++)
+    for(int x = 0; x < mapSizeX; x++)
     {
       char ch;
       mapFile.get(ch);
