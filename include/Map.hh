@@ -4,12 +4,12 @@
 class Map
 {
 private:
-  std::string textueId;
+  std::string textureId;
   int scale;
   int tileSize;
 public:
   Map(std::string textureId, int scale, int tileSize);
   ~Map();
-  void Addtile(int sourcex, int sourceY, int x, int y);
+  void AddTile(int sourceX, int sourceY, int x, int y);
   void LoadMap(std::string filePath, int mapSizeX, int mapSizeY);
 };
